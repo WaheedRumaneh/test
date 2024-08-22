@@ -15,9 +15,9 @@
             publicKey: JSON.stringify(publicKey),
             privateKey: JSON.stringify(privateKey),
           };
-          window?.ReactNativeWebView?.postMessage(returnedData);
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
         }
       };
 
@@ -31,9 +31,9 @@
             symmetricKey: JSON.stringify(symmetricKey),
             encapsulation: JSON.stringify(encapsulation),
           };
-          window?.ReactNativeWebView?.postMessage(returnedData);
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
         }
       };
 
@@ -50,9 +50,9 @@
             authTag: JSON.stringify(authTag),
             encryptedMessage: JSON.stringify(encryptedMessage),
           };
-          window?.ReactNativeWebView?.postMessage(returnedData);
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
         }
       };
       /* Eecrypt End */
@@ -70,9 +70,9 @@
             functionName: 'decapsulateKey',
             symmetricKeyFromEncapsulation: JSON.stringify(symmetricKeyFromEncapsulation),
           };
-          window?.ReactNativeWebView?.postMessage(returnedData);
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
         }
       };
 
@@ -97,9 +97,9 @@
             functionName: 'decryptMessage',
             decryptedMessage: decryptedMessage,
           };
-          window?.ReactNativeWebView?.postMessage(returnedData);
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
         }
       };
       /* Decrypt End */
