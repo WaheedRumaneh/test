@@ -9,17 +9,18 @@
       // To generate a public and private key pair (pk, sk)
       const generateKeys = async () => {
         const [publicKey, privateKey] = await KeyGen1024();
-        return {
-          publicKey,
-          privateKey,
-        };
+        const returnedData = { publicKey, privateKey };
+        window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        return returnedData;
       };
 
       /* Eecrypt Start */
       // Step 1: Client encapsulates a symmetric key using the server's public key
       const encapsulateKey = async ({ publicKey }) => {
         const [encapsulation, symmetricKey] = await Encrypt1024(publicKey);
-        return { encapsulation, symmetricKey };
+        const returnedData = { encapsulation, symmetricKey };
+        window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        return returnedData;
       };
 
       // Step 2: Client encrypts a message using AES-256-GCM with the symmetric key
@@ -28,7 +29,9 @@
           message,
           key: symmetricKey,
         });
-        return { encryptedMessage, authTag, iv };
+        const returnedData = { encryptedMessage, authTag, iv };
+        window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        return returnedData;
       };
       /* Eecrypt End */
 
@@ -36,7 +39,9 @@
       // Step 1: Server decapsulates the symmetric key using its private key
       const decapsulateKey = async ({ privateKey, encapsulation }) => {
         const symmetricKeyFromEncapsulation = await Decrypt1024(encapsulation, privateKey);
-        return { symmetricKeyFromEncapsulation };
+        const returnedData = { symmetricKeyFromEncapsulation };
+        window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        return returnedData;
       };
 
       // Step 2: Server decrypts the message using AES-256-GCM with the symmetric key
@@ -52,7 +57,9 @@
           message: encryptedMessage,
           key: symmetricKeyFromEncapsulation,
         });
-        return { decryptedMessage };
+        const returnedData = { decryptedMessage };
+        window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        return returnedData;
       };
       /* Decrypt End */
 
