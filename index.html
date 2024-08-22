@@ -27,9 +27,11 @@
         try {
           document.write('<p>waheed</p>');
           document.write('<p>publicKey: ' + publicKey + '</p>');
+          document.write('<p>publicKey: ' + JSON.stringify(publicKey) + '</p>');
+          document.write('<p>publicKey: ' + JSON.stringify(JSON.parse(publicKey)) + '</p>');
           window?.ReactNativeWebView?.postMessage(JSON.stringify(publicKey));
           window?.ReactNativeWebView?.postMessage(JSON.stringify(JSON.parse(publicKey)));
-          const [encapsulation, symmetricKey] = await Encrypt1024(JSON.parse(publicKey));
+          const [encapsulation, symmetricKey] = await Encrypt1024(JSON.stringify(publicKey));
           document.write('<p>encapsulation: ' + encapsulation + '</p>');
           document.write('<p>symmetricKey: ' + symmetricKey + '</p>');
           const returnedData = {
