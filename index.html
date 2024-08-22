@@ -15,7 +15,6 @@
             publicKey: JSON.stringify(publicKey),
             privateKey: JSON.stringify(privateKey),
           };
-          return returnedData;
           window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
           window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
@@ -32,7 +31,6 @@
             symmetricKey: JSON.stringify(symmetricKey),
             encapsulation: JSON.stringify(encapsulation),
           };
-          return returnedData;
           window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
           window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
@@ -52,7 +50,6 @@
             authTag: JSON.stringify(authTag),
             encryptedMessage: JSON.stringify(encryptedMessage),
           };
-          return returnedData;
           window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
           window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
@@ -73,7 +70,6 @@
             functionName: 'decapsulateKey',
             symmetricKeyFromEncapsulation: JSON.stringify(symmetricKeyFromEncapsulation),
           };
-          return returnedData;
           window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
           window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
@@ -101,7 +97,6 @@
             functionName: 'decryptMessage',
             decryptedMessage: decryptedMessage,
           };
-          return returnedData;
           window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
           window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
