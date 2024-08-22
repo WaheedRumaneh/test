@@ -83,7 +83,7 @@
         symmetricKeyFromEncapsulation,
       }) => {
         try {
-          document.write('<p>---------------</p>');
+          document.write('<p>waheed</p>');
           document.write('<p>iv1: ' + iv + '</p>');
           document.write('<p>iv2: ' + JSON.stringify(iv) + '</p>');
           document.write('<p>iv3: ' + JSON.parse(iv) + '</p>');
@@ -99,10 +99,10 @@
           );
           document.write('<p>44</p>');
           const decryptedMessage = await window.CryptoDecrypt({
-            iv: iv,
+            iv: JSON.stringify(iv),
             authTag: authTag,
             message: encryptedMessage,
-            key: symmetricKeyFromEncapsulation,
+            key: JSON.stringify(symmetricKeyFromEncapsulation),
           });
           document.write('<p>decryptedMessage: ' + decryptedMessage + '</p>');
           const returnedData = {
