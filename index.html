@@ -65,7 +65,6 @@
             JSON.parse(encapsulation),
             JSON.parse(privateKey)
           );
-
           const returnedData = {
             functionName: 'decapsulateKey',
             symmetricKeyFromEncapsulation: JSON.stringify(symmetricKeyFromEncapsulation),
@@ -84,15 +83,12 @@
         symmetricKeyFromEncapsulation,
       }) => {
         try {
-          document.write('<p>a-------------a:</p>');
-
           const decryptedMessage = await window.CryptoDecrypt({
             iv: JSON.parse(iv),
             authTag: JSON.parse(authTag),
             message: JSON.parse(encryptedMessage),
             key: JSON.parse(symmetricKeyFromEncapsulation),
           });
-          document.write('<p>decryptedMessage: ' + decryptedMessage + '</p>');
           const returnedData = {
             functionName: 'decryptMessage',
             decryptedMessage: decryptedMessage,
