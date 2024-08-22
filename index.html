@@ -84,7 +84,7 @@
       }) => {
         try {
           document.write('<p>asdasdasdasdasd</p>');
-          document.write('<p>iv: ' + JSON.parse(iv) + '</p>');
+          document.write('<p>iv: ' + JSON.stringify(iv) + '</p>');
           document.write('<p>1</p>');
           document.write('<p>authTag: ' + authTag + '</p>');
           document.write('<p>2</p>');
@@ -92,23 +92,20 @@
           document.write('<p>3</p>');
           document.write(
             '<p>JSON.parse(symmetricKeyFromEncapsulation): ' +
-              JSON.parse(symmetricKeyFromEncapsulation) +
+              JSON.stringify(symmetricKeyFromEncapsulation) +
               '</p>'
           );
           document.write('<p>4</p>');
           const decryptedMessage = await window.CryptoDecrypt({
-            iv: JSON.parse(iv),
+            iv: JSON.stringify(iv),
             authTag: authTag,
             message: encryptedMessage,
-            key: JSON.parse(symmetricKeyFromEncapsulation),
+            key: JSON.stringify(symmetricKeyFromEncapsulation),
           });
           document.write('<p>decryptedMessage: ' + decryptedMessage + '</p>');
-          document.write(
-            '<p>JSON.stringify(decryptedMessage): ' + JSON.stringify(decryptedMessage) + '</p>'
-          );
           const returnedData = {
             functionName: 'decryptMessage',
-            decryptedMessage: JSON.stringify(decryptedMessage),
+            decryptedMessage: decryptedMessage,
           };
           window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
