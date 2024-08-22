@@ -7,7 +7,7 @@
   <body>
     <script type="module">
       // To generate a public and private key pair (pk, sk)
-      const generateKeys = async () => {
+      window.generateKeys = async () => {
         const [publicKey, privateKey] = await KeyGen1024();
         const returnedData = { publicKey, privateKey };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
@@ -16,7 +16,7 @@
 
       /* Eecrypt Start */
       // Step 1: Client encapsulates a symmetric key using the server's public key
-      const encapsulateKey = async ({ publicKey }) => {
+      window.encapsulateKey = async ({ publicKey }) => {
         const [encapsulation, symmetricKey] = await Encrypt1024(publicKey);
         const returnedData = { encapsulation, symmetricKey };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
@@ -24,7 +24,7 @@
       };
 
       // Step 2: Client encrypts a message using AES-256-GCM with the symmetric key
-      const encryptMessage = async ({ message, symmetricKey }) => {
+      window.encryptMessage = async ({ message, symmetricKey }) => {
         const { encryptedMessage, authTag, iv } = await window.CryptoEncrypt({
           message,
           key: symmetricKey,
@@ -37,7 +37,7 @@
 
       /* Decrypt Start */
       // Step 1: Server decapsulates the symmetric key using its private key
-      const decapsulateKey = async ({ privateKey, encapsulation }) => {
+      window.decapsulateKey = async ({ privateKey, encapsulation }) => {
         const symmetricKeyFromEncapsulation = await Decrypt1024(encapsulation, privateKey);
         const returnedData = { symmetricKeyFromEncapsulation };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
@@ -45,7 +45,7 @@
       };
 
       // Step 2: Server decrypts the message using AES-256-GCM with the symmetric key
-      const decryptMessage = async ({
+      window.decryptMessage = async ({
         iv,
         authTag,
         encryptedMessage,
