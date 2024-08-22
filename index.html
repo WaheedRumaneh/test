@@ -11,7 +11,7 @@
         const [publicKey, privateKey] = await KeyGen1024();
         const returnedData = { publicKey, privateKey, functionName: 'generateKeys' };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
-        return returnedData;
+        // return returnedData;
       };
 
       /* Eecrypt Start */
@@ -20,7 +20,7 @@
         const [encapsulation, symmetricKey] = await Encrypt1024(JSON.parse(publicKey));
         const returnedData = { encapsulation, symmetricKey, functionName: 'encapsulateKey' };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
-        return returnedData;
+        // return returnedData;
       };
 
       // Step 2: Client encrypts a message using AES-256-GCM with the symmetric key
@@ -31,7 +31,7 @@
         });
         const returnedData = { encryptedMessage, authTag, iv, functionName: 'encryptMessage' };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
-        return returnedData;
+        // return returnedData;
       };
       /* Eecrypt End */
 
@@ -44,7 +44,7 @@
         );
         const returnedData = { symmetricKeyFromEncapsulation, functionName: 'decapsulateKey' };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
-        return returnedData;
+        // return returnedData;
       };
 
       // Step 2: Server decrypts the message using AES-256-GCM with the symmetric key
@@ -62,7 +62,7 @@
         });
         const returnedData = { decryptedMessage, functionName: 'decryptMessage' };
         window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
-        return returnedData;
+        // return returnedData;
       };
       /* Decrypt End */
     </script>
