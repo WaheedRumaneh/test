@@ -27,6 +27,8 @@
         try {
           document.write('<p>waheed</p>');
           document.write('<p>publicKey: ' + publicKey + '</p>');
+          document.write('<p>sdasdasdasdasdasdasd</p>');
+          document.write('<p>publicKey: ' + JSON.parse(publicKey) + '</p>');
           document.write('<p>publicKey: ' + JSON.stringify(publicKey) + '</p>');
           document.write('<p>publicKey: ' + JSON.stringify(JSON.parse(publicKey)) + '</p>');
           window?.ReactNativeWebView?.postMessage(JSON.stringify(publicKey));
