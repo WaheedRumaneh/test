@@ -25,7 +25,11 @@
       // Step 1: Client encapsulates a symmetric key using the server's public key
       window.encapsulateKey = async ({ publicKey }) => {
         try {
+          document.write('<p>waheed</p>');
+          document.write('<p>publicKey: ' + publicKey + '</p>');
           const [encapsulation, symmetricKey] = await Encrypt1024(JSON.parse(publicKey));
+          document.write('<p>encapsulation: ' + encapsulation + '</p>');
+          document.write('<p>symmetricKey: ' + symmetricKey + '</p>');
           const returnedData = {
             functionName: 'encapsulateKey',
             symmetricKey: JSON.stringify(symmetricKey),
