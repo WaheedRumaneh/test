@@ -93,10 +93,12 @@
           console.log();
 
           window?.ReactNativeWebView?.postMessage(JSON.stringify(decryptedMessage));
+          document.write('<p>DecryptedMessage: ' + decryptedMessage + '</p>');
           // Send the result back to React Native
           // window.ReactNativeWebView.postMessage(JSON.stringify({ sharedSecret, decryptedSecret }));
         } catch (error) {
           window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: error.message }));
+          document.write('<p>Error: ' + error.message + '</p>');
         }
       });
     </script>
