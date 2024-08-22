@@ -62,52 +62,6 @@
         return returnedData;
       };
       /* Decrypt End */
-
-      document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          // The client sends the encapsulation, IV, auth tag, and encrypted message to the server
-          const { privateKey, publicKey } = await generateKeys();
-          console.log('privateKey:', privateKey);
-          console.log('publicKey:', publicKey);
-          console.log();
-
-          const message = 'Hello World';
-          const { encapsulation, symmetricKey } = await encapsulateKey({
-            publicKey,
-          });
-          const { encryptedMessage, authTag, iv } = await encryptMessage({
-            message,
-            symmetricKey,
-          });
-          console.log('message:', message);
-          console.log('encryptedMessage:', encryptedMessage);
-          console.log('encapsulation:', encapsulation);
-          console.log('authTag:', authTag);
-          console.log('iv:', iv);
-          console.log();
-
-          const { symmetricKeyFromEncapsulation } = await decapsulateKey({
-            privateKey,
-            encapsulation,
-          });
-          const { decryptedMessage } = await decryptMessage({
-            iv,
-            authTag,
-            encryptedMessage,
-            symmetricKeyFromEncapsulation,
-          });
-          console.log('decryptedMessage:', decryptedMessage);
-          console.log();
-
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(decryptedMessage));
-          document.write('<p>DecryptedMessage: ' + decryptedMessage + '</p>');
-          // Send the result back to React Native
-          // window.ReactNativeWebView.postMessage(JSON.stringify({ sharedSecret, decryptedSecret }));
-        } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: error.message }));
-          document.write('<p>Error: ' + error.message + '</p>');
-        }
-      });
     </script>
   </body>
 </html>
