@@ -15,9 +15,10 @@
             publicKey: JSON.stringify(publicKey),
             privateKey: JSON.stringify(privateKey),
           };
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+          return returnedData;
+          window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
         }
       };
 
@@ -25,15 +26,16 @@
       // Step 1: Client encapsulates a symmetric key using the server's public key
       window.encapsulateKey = async ({ publicKey }) => {
         try {
-          const [encapsulation, symmetricKey] = await Encrypt1024(JSON.stringify(publicKey));
+          const [encapsulation, symmetricKey] = await Encrypt1024(JSON.parse(publicKey));
           const returnedData = {
             functionName: 'encapsulateKey',
             symmetricKey: JSON.stringify(symmetricKey),
             encapsulation: JSON.stringify(encapsulation),
           };
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+          return returnedData;
+          window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
         }
       };
 
@@ -50,9 +52,10 @@
             authTag: JSON.stringify(authTag),
             encryptedMessage: JSON.stringify(encryptedMessage),
           };
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+          return returnedData;
+          window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
         }
       };
       /* Eecrypt End */
@@ -70,9 +73,10 @@
             functionName: 'decapsulateKey',
             symmetricKeyFromEncapsulation: JSON.stringify(symmetricKeyFromEncapsulation),
           };
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+          return returnedData;
+          window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
         }
       };
 
@@ -84,7 +88,7 @@
         symmetricKeyFromEncapsulation,
       }) => {
         try {
-          document.write('<p>asdasdasdasd:</p>');
+          document.write('<p>a-------------a:</p>');
 
           const decryptedMessage = await window.CryptoDecrypt({
             iv: JSON.parse(iv),
@@ -97,9 +101,10 @@
             functionName: 'decryptMessage',
             decryptedMessage: decryptedMessage,
           };
-          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+          return returnedData;
+          window?.ReactNativeWebView?.postMessage(returnedData);
         } catch (error) {
-          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+          window?.ReactNativeWebView?.postMessage({ error: true, errorMsg: error });
         }
       };
       /* Decrypt End */
