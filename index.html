@@ -91,11 +91,12 @@
           });
           console.log('decryptedMessage:', decryptedMessage);
           console.log();
+
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(decryptedMessage));
           // Send the result back to React Native
           // window.ReactNativeWebView.postMessage(JSON.stringify({ sharedSecret, decryptedSecret }));
         } catch (error) {
-          document.write('<p>Error: ' + error.message + '</p>');
-          // window.ReactNativeWebView.postMessage(JSON.stringify({ error: error.message }));
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: error.message }));
         }
       });
     </script>
