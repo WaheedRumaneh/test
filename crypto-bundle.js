@@ -18,7 +18,7 @@ const CryptoEncrypt = ({ message, key }) => {
 
 const CryptoDecrypt = ({ message, key, authTag, iv }) => {
   try {
-    const convertedIV = Buffer.from(iv);
+    const convertedIV = Buffer.from(iv, 'hex');
     const convertedKey = Buffer.from(key);
     const decipher = crypto.createDecipheriv('aes-256-gcm', convertedKey, convertedIV);
     decipher.setAuthTag(Buffer.from(authTag, 'hex'));
