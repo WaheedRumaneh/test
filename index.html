@@ -28,8 +28,8 @@
           const [encapsulation, symmetricKey] = await Encrypt1024(JSON.parse(publicKey));
           const returnedData = {
             functionName: 'encapsulateKey',
-            symmetricKey: JSON.stringify(symmetricKey),
             encapsulation: JSON.stringify(encapsulation),
+            symmetricKey: JSON.stringify(symmetricKey.toString('hex')),
           };
           window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
@@ -67,7 +67,9 @@
           );
           const returnedData = {
             functionName: 'decapsulateKey',
-            symmetricKeyFromEncapsulation: JSON.stringify(symmetricKeyFromEncapsulation),
+            symmetricKeyFromEncapsulation: JSON.stringify(
+              symmetricKeyFromEncapsulation.toString('hex')
+            ),
           };
           window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
         } catch (error) {
