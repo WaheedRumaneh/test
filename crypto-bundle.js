@@ -10,7 +10,7 @@ const CryptoEncrypt = ({ message, key }) => {
     let encryptedMessage = cipher.update(message, 'utf8', 'hex');
     encryptedMessage += cipher.final('hex');
     const authTag = cipher.getAuthTag().toString('hex');
-    return { encryptedMessage, authTag, iv };
+    return { encryptedMessage, authTag, iv: iv.toString('hex') };
   } catch (error) {
     throw new Error(error);
   }
