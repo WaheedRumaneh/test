@@ -3,6 +3,7 @@
   <head>
     <script type="text/javascript" src="./kyber-bundle.js"></script>
     <script type="text/javascript" src="./crypto-bundle.js"></script>
+    <script type="text/javascript" src="./elliptic-bundle.js"></script>
   </head>
   <body>
     <script type="module">
@@ -101,6 +102,24 @@
         }
       };
       /* Decrypt End */
+
+      // endpoint VerifySignature function
+      window.verifySignature = async ({ encryptedMessage, derSignature, publicKey }) => {
+        try {
+          const isValidResponse = await window.CryptoVerifySignature({
+            publicKey: JSON.parse(publicKey),
+            derSignature: JSON.parse(derSignature),
+            encryptedMessage: JSON.parse(encryptedMessage),
+          });
+          const returnedData = {
+            functionName: 'verifySignature',
+            isValidResponse: JSON.stringify(isValidResponse),
+          };
+          window?.ReactNativeWebView?.postMessage(JSON.stringify(returnedData));
+        } catch (error) {
+          window?.ReactNativeWebView?.postMessage(JSON.stringify({ error: true, errorMsg: error }));
+        }
+      };
     </script>
   </body>
 </html>
